@@ -255,7 +255,6 @@ export default function NoteDetailScreen({ route, navigation }: Props) {
   // ── Load / save ──────────────────────────────────────────────────────────────
 
   useEffect(() => {
-    navigation.setOptions({ headerLeft: () => null })
     void loadNote({ silent: hasLoadedOnceRef.current })
   }, [navigation])
 

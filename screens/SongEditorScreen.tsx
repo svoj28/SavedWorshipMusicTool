@@ -71,7 +71,6 @@ export default function SongEditorScreen({ route, navigation }: Props) {
 
   // ── Load existing song if editing ──────────────────────────────────────
   useEffect(() => {
-    navigation.setOptions({ headerLeft: () => null })
     if (isEditing) loadSong()
   }, [])
 

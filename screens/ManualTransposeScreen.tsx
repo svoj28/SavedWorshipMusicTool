@@ -45,10 +45,6 @@ export default function ManualTransposeScreen({ navigation }: Props) {
   const [input, setInput]     = useState('')
   const [mode, setMode]       = useState<Mode>('chords')
 
-  useEffect(() => {
-    navigation.setOptions({ headerLeft: () => null })
-  }, [navigation])
-
   const semitones = useMemo(() => getTransposeDistance(fromKey, toKey), [fromKey, toKey])
 
   // Live result - no button press needed, the chart updates as you type

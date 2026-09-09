@@ -181,19 +181,19 @@ function ChordListsStack() {
       <Stack.Screen
         name="ChordList"
         component={ChordListScreen}
-        options={{ title: 'Song', headerLeft: () => null, headerShown: false }}
+        options={{ title: 'Song', ...makeHeaderOptions(colors, true) }}
       />
       {canManageChords && (
         <>
           <Stack.Screen
             name="AddSong"
             component={AddSongScreen}
-            options={{ title: 'Add Song', headerLeft: () => null, headerShown: false }}
+            options={{ title: 'Add Song', ...makeHeaderOptions(colors, true) }}
           />
           <Stack.Screen
             name="SongEditor"
             component={SongEditorScreen}
-            options={{ title: 'Song', headerLeft: () => null, headerShown: false }}
+            options={{ title: 'Song', ...makeHeaderOptions(colors, true) }}
           />
         </>
       )}
@@ -218,7 +218,7 @@ function PersonalNotesStack() {
       <Stack.Screen
         name="NoteDetail"
         component={NoteDetailScreen}
-        options={{ title: 'Note', headerLeft: () => null, headerShown: false}}
+        options={{ title: 'Note', ...makeHeaderOptions(colors, true) }}
       />
     </Stack.Navigator>
   )
@@ -226,13 +226,28 @@ function PersonalNotesStack() {
 
 // ─── Shared header options factory ───────────────────────────────────────────
 
-function makeHeaderOptions(colors: AppColors) {
+function makeHeaderOptions(colors: AppColors, detail = false) {
   return {
-    headerShown: true,
+    headerShown: detail ? Platform.OS === 'web' : true,
     headerTintColor: colors.text,
     headerStyle: { 
       backgroundColor: colors.header,
     },
+    headerLeft: Platform.OS === 'web'
+      ? ({ canGoBack, onPress }: { canGoBack?: boolean; onPress?: () => void }) => (
+          canGoBack ? (
+            <TouchableOpacity
+              onPress={onPress}
+              style={{ marginLeft: 16 }}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              accessibilityRole="button"
+              accessibilityLabel="Go back"
+            >
+              <Ionicons name="arrow-back" size={22} color={colors.icon} />
+            </TouchableOpacity>
+          ) : null
+        )
+      : undefined,
     headerShadowVisible: false,
     headerTitleStyle: {
       fontWeight: '700' as const,
@@ -324,7 +339,6 @@ function AppTabs({
   const { colors } = useAppTheme()
 
   // ── Drawer slide ────────────────────────────────────────────────────────────
-  //
   // Modal's own animationType="slide" comes up from the bottom, which is wrong
   // for a side drawer, so the Modal is left unanimated and the panel is driven
   // by hand: it travels its own width in from the left on open and back out on
@@ -372,37 +386,37 @@ function AppTabs({
         <Stack.Screen
           name="Metronome"
           component={MetronomeScreen}
-          options={{ title: 'Metronome', headerLeft: () => null, ...makeHeaderOptions(colors) }}
+          options={{ title: 'Metronome', ...makeHeaderOptions(colors, true) }}
         />
         <Stack.Screen
           name="ManualTranspose"
           component={ManualTransposeScreen}
-          options={{ title: 'Transpose Chords', headerLeft: () => null, ...makeHeaderOptions(colors) }}
+          options={{ title: 'Transpose Chords', ...makeHeaderOptions(colors, true) }}
         />
         <Stack.Screen
           name="AudioTools"
           component={AudioToolsScreen}
-          options={{ title: 'Audio Tools', headerLeft: () => null, ...makeHeaderOptions(colors) }}
+          options={{ title: 'Audio Tools', ...makeHeaderOptions(colors, true) }}
         />
         <Stack.Screen
           name="Tuner"
           component={TunerScreen}
-          options={{ title: 'Tuner', headerLeft: () => null, ...makeHeaderOptions(colors) }}
+          options={{ title: 'Tuner', ...makeHeaderOptions(colors, true) }}
         />
         <Stack.Screen
           name="Pad"
           component={PadScreen}
-          options={{ title: 'Pad', headerLeft: () => null, ...makeHeaderOptions(colors) }}
+          options={{ title: 'Pad', ...makeHeaderOptions(colors, true) }}
         />
         <Stack.Screen
           name="Calendar"
           component={CalendarScreen}
-          options={{ title: 'Team Calendar', headerLeft: () => null, ...makeHeaderOptions(colors) }}
+          options={{ title: 'Team Calendar', ...makeHeaderOptions(colors, true) }}
         />
         <Stack.Screen
           name="EditAccount"
           component={EditAccountScreen}
-          options={{ title: 'Edit Profile', headerLeft: () => null, ...makeHeaderOptions(colors) }}
+          options={{ title: 'Edit Profile', ...makeHeaderOptions(colors, true) }}
         />
       </Stack.Navigator>
 

@@ -75,10 +75,6 @@ export default function AddSongScreen({ route, navigation }: Props) {
   // Track cursor position for chord/section insertion
   const cursorPosRef = useRef<{ start: number; end: number }>({ start: 0, end: 0 })
 
-  useEffect(() => {
-    navigation.setOptions({ headerLeft: () => null })
-  }, [navigation])
-
   /**
    * Bring a song in from the web.
    *

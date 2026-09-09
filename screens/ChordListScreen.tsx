@@ -328,10 +328,6 @@ export default function ChordListScreen({ route, navigation }: Props) {
   }
 }, [chordListId])
 
-  useEffect(() => {
-    navigation.setOptions({ headerLeft: () => null })
-  }, [navigation])
-
   useFocusEffect(
     React.useCallback(() => { void loadChordList({ silent: hasLoadedOnceRef.current }) }, [chordListId])
   )
