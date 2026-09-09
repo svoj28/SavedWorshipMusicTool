@@ -1,0 +1,86 @@
+{
+  "expo": {
+    "name": "Saved Worship",
+    "slug": "savedworshipmusictool",
+    "version": "1.0.0",
+    "scheme": "savedworship",
+    "orientation": "portrait",
+    "icon": "./assets/SWLOGO.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.svojworship.savedworship",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Allow Saved Worship to use the microphone so the tuner can hear the note you are playing."
+      }
+    },
+    "android": {
+      "softwareKeyboardLayoutMode": "pan",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/SWLOGO.png",
+        "backgroundColor": "#ffffff",
+        "monochromeImage": "./assets/SWLOGO.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.CAMERA"
+      ],
+      "package": "com.svojworship.savedworship"
+    },
+    "web": {
+      "favicon": "./assets/SavedLOGO.png",
+      "bundler": "metro",
+      "output": "single",
+      "name": "Saved Worship",
+      "shortName": "Saved Worship",
+      "themeColor": "#ffffff",
+      "backgroundColor": "#ffffff"
+    },
+    "plugins": [
+      "expo-sqlite",
+      "expo-audio",
+      "expo-font",
+      "expo-asset",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 24
+          }
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera to scan QR codes."
+        }
+      ],
+      "expo-status-bar",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/SavedLOGO.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ]
+    ],
+    "updates": {
+      "url": "https://u.expo.dev/2154a015-e07b-48d6-9ba4-138c971da0bd",
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2154a015-e07b-48d6-9ba4-138c971da0bd"
+      }
+    }
+  }
+}
